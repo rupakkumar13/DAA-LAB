@@ -1,2 +1,2 @@
 # DAA-LAB
-Contain all the lap practical of Design and Analsis of Algorithm
+Contain all the lab practical of Design and Analsis of Algorithm
