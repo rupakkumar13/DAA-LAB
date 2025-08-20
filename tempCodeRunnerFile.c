@@ -1,36 +1,25 @@
 #include <stdio.h>
+#include <math.h>
 
 int main() {
-    int n, target, found = 0;
-    printf("Enter the size of the array: ");
-    scanf("%d", &n);
+    int n, x;
+    int sum1 = 1, sum2;
+    printf("Enter value of x and n: ");
+    scanf("%d %d", &x, &n);
 
-    int arr[n];
-    printf("Enter the elements in the array (sorted): ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    int term = 1;
+    for (int i = 1; i <= n; i++) {
+        term *= x;
+        sum1 += term;
     }
 
-    printf("Enter the element to search: ");
-    scanf("%d", &target);
+    if (x == 1)
+        sum2 = n + 1;
+    else
+        sum2 = (pow(x, n + 1) - 1) / (x - 1);
 
-    int low = 0, high = n - 1;
-    while (low <= high) {
-        int mid = (low + high) / 2;
-        if (arr[mid] == target) {
-            printf("Element found at position %d\n", mid + 1);
-            found = 1;
-            break;
-        } else if (arr[mid] < target) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
-
-    if (!found) {
-        printf("Element not found\n");
-    }
+    printf("Sum using loop     = %d\n", sum1);
+    printf("Sum using formula  = %d\n", sum2);
 
     return 0;
 }

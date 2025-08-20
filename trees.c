@@ -75,9 +75,15 @@ int main() {
 
         switch (choice) {
         case 1:
-            printf("Enter value to insert: ");
+            printf("enter the no of nodes:");
+            int n ;
+            int i;
+            scanf("%d",&n);
+           for(int i =0 ;i<n; i++){
+             printf("Enter value to insert: ");
             scanf("%d", &val);
             root = insert(root, val);
+           }
             break;
         case 2:
             printf("Enter value to delete: ");
@@ -90,7 +96,7 @@ int main() {
             printf("\n");
             break;
         case 4:
-            exit(0);
+            return 0 ;
         default:
             printf("Invalid choice!\n");
         }
