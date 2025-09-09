@@ -1,25 +1,43 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
-    int n, x;
-    int sum1 = 1, sum2;
-    printf("Enter value of x and n: ");
-    scanf("%d %d", &x, &n);
+void moveDisk(char from, char to, int disk) {
+    printf("Move disk %d from %c to %c\n", disk, from, to);
+}
 
-    int term = 1;
-    for (int i = 1; i <= n; i++) {
-        term *= x;
-        sum1 += term;
+void towerOfHanoiIterative(int n, char from, char to, char aux) {
+    int totalMoves = pow(2, n) - 1;
+    char A = from, B = aux, C = to;
+
+    if (n % 2 == 0) {
+        char temp = B;
+        B = C;
+        C = temp;
     }
 
-    if (x == 1)
-        sum2 = n + 1;
-    else
-        sum2 = (pow(x, n + 1) - 1) / (x - 1);
+    for (int i = 1; i <= totalMoves; i++) {
+        int disk;
+        if (i % 3 == 1) {
+            disk = (i & -i) % (2 * n);
+            moveDisk(A, C, disk);
+        } 
+        else if (i % 3 == 2) {
+            disk = (i & -i) % (2 * n);
+            moveDisk(A, B, disk);
+        } 
+        else if (i % 3 == 0) {
+            disk = (i & -i) % (2 * n);
+            moveDisk(B, C, disk);
+        }
+    }
+}
 
-    printf("Sum using loop     = %d\n", sum1);
-    printf("Sum using formula  = %d\n", sum2);
+int main() {
+    int n;
+    printf("Enter number of disks: ");
+    scanf("%d", &n);
+
+    towerOfHanoiIterative(n, 'A', 'C', 'B');
 
     return 0;
 }
